@@ -32,4 +32,8 @@ public class ProductController {
         return "This is Delete_product page";
     }
 
+    @GetMapping("/view")
+    public String View_page(){
+        return "This is Product_View page";
+    }
 }
