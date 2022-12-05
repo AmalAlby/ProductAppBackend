@@ -22,4 +22,9 @@ public class ProductController {
         return "This is search_product page";
     }
 
+    @PostMapping("/edit")
+    public String Edit_page(){
+        return "This is Edit_product_details page";
+    }
+
 }
