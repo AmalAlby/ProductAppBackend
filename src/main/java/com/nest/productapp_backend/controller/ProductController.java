@@ -1,13 +1,20 @@
 package com.nest.productapp_backend.controller;
 
+import com.nest.productapp_backend.dao.ProductDao;
 import com.nest.productapp_backend.model.Product;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.List;
+
 @RestController
 public class ProductController {
+
+    @Autowired
+    private ProductDao dao;
 
     @GetMapping("/")
     public String Main_page(){
@@ -24,6 +31,7 @@ public class ProductController {
         System.out.println(p.getSellerName());
         System.out.println(p.getPrice());
         System.out.println(p.getDistributor());
+        dao.save(p);
         return "This is add_product page";
     }
 
@@ -43,7 +51,7 @@ public class ProductController {
     }
 
     @GetMapping("/view")
-    public String View_page(){
-        return "This is Product_View page";
+    public List<Product> View_page(){
+        return (List<Product>) dao.findAll();
     }
 }
