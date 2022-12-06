@@ -3,10 +3,7 @@ package com.nest.productapp_backend.controller;
 import com.nest.productapp_backend.dao.ProductDao;
 import com.nest.productapp_backend.model.Product;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -20,6 +17,8 @@ public class ProductController {
     public String Main_page(){
         return "WELCOME TO PRODUCT APP";
     }
+
+    @CrossOrigin(origins = "*")
 
     @PostMapping(path="/add",consumes ="application/json",produces ="application/json" )
     public String Add_page(@RequestBody Product p){
@@ -35,6 +34,7 @@ public class ProductController {
         return "This is add_product page";
     }
 
+    @CrossOrigin(origins = "*")
     @PostMapping("/search")
     public String Search_page(){
         return "This is search_product page";
@@ -50,6 +50,7 @@ public class ProductController {
         return "This is Delete_product page";
     }
 
+    @CrossOrigin(origins = "*")
     @GetMapping("/view")
     public List<Product> View_page(){
         return (List<Product>) dao.findAll();
